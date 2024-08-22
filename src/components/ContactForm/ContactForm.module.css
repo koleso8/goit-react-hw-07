@@ -1,0 +1,159 @@
+.form {
+  --background: #d3d3d3;
+  --input-focus: #2d8cf0;
+  --font-color: #323232;
+  --font-color-sub: #666;
+  --bg-color: #fff;
+  --main-color: #323232;
+  padding: 20px;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  width: 300px;
+  height: 100%;
+  position: relative;
+  @media only screen and (max-width: 376px) {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+p {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.change {
+  background: #f89b9b;
+}
+.form > span {
+  font-family: var(--font-SpaceMono);
+  color: rgb(244, 83, 83);
+  font-weight: 600;
+  font-size: 12px;
+  position: absolute;
+  top: 106px;
+  left: 45px;
+}
+.form > p {
+  font-weight: 600;
+  color: rgb(244, 83, 83);
+  font-size: 12px;
+  position: absolute;
+  top: 224px;
+  left: 45px;
+}
+
+.oauthButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: auto 15px 15px auto;
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: large;
+  font-weight: bold;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: all 250ms;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.oauthButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #212121;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+.oauthButton:hover {
+  color: #e8e8e8;
+}
+
+.oauthButton:hover::before {
+  width: 100%;
+}
+
+.form > input {
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 10px;
+  outline: none;
+}
+
+.form > input {
+  margin-bottom: 20px;
+}
+
+.form > label {
+  font-weight: bold;
+  font-size: large;
+}
+
+.icon {
+  width: 15px;
+  color: #333;
+  position: absolute;
+  top: 72px;
+  right: 36px;
+}
+.iconSearch {
+  position: absolute;
+  right: 36px;
+  top: 72px;
+}
+.iconAlt {
+  width: 15px;
+  color: #333;
+  position: absolute;
+  top: 192px;
+  right: 36px;
+}
+
+.box {
+  composes: form;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media only screen and (max-width: 376px) {
+    width: 300px;
+    height: 60px;
+    padding-top: 20px;
+    & input {
+      width: 140px;
+      margin-bottom: 0;
+    }
+    & button {
+      display: none;
+    }
+    & label {
+      display: none;
+    }
+  }
+}

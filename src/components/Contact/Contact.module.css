@@ -1,0 +1,77 @@
+.card__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+  border-bottom: 2px solid #000;
+  width: 100%;
+}
+.card__subtitle {
+  font-size: 20px;
+  line-height: 1.2;
+  color: #333;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
+.signUp {
+  width: 100%;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.signUp:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 0 #000;
+}
+.signUp:active {
+  animation: shake 0.5s ease-in-out;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.iconNumber {
+  color: #333;
+  position: absolute;
+  left: 7px;
+  width: 15px;
+}
+.iconUser {
+  width: 15px;
+  color: #333;
+  position: absolute;
+  left: 7px;
+  top: 40px;
+}
+
+.edit {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  background-color: rgba(250, 247, 247, 0.402);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  padding: 10px;
+  transition: 0.3s linear;
+  &:hover {
+    background-color: rgba(250, 247, 247, 0.811);
+  }
+}
+
+.favorite {
+  composes: edit;
+  top: 40px;
+}
