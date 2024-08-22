@@ -1,17 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { isEdit: false, current: null };
+const initialState = { current: null };
 
 const slice = createSlice({
   name: 'editing',
   initialState,
   reducers: {
     onEdit: (state, actions) => {
-      state.isEdit = true;
       state.current = actions.payload;
     },
     cancelEdit: state => {
-      state.isEdit = false;
       state.current = null;
     },
   },

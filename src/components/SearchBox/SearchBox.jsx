@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { FaSearch } from 'react-icons/fa';
 import { useId } from 'react';
 import { selectNameFilter } from '../../redux/selecrors';
-import { changeFilter } from '../../redux/contactsSlice';
+import { changeFilter } from '../../redux/filtersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import s from '../ContactForm/ContactForm.module.css';
 

@@ -3,6 +3,18 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://66c6e638732bf1b79fa481c0.mockapi.io/';
 
+export const addFavotiteThunk = createAsyncThunk(
+  'favorite/addFavorite',
+  async (card, thunkAPI) => {
+    try {
+      const { data } = await axios.post('favotite', card);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const toggleIsFavoriteThunk = createAsyncThunk(
   'toggleisFavorite',
   async (card, thunkAPI) => {

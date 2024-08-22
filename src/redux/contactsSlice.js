@@ -9,9 +9,6 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
-  name: '',
-  isEdit: false,
-  current: null,
 };
 
 const slice = createSlice({
@@ -22,18 +19,6 @@ const slice = createSlice({
       state.items = state.items.map(item =>
         item.id === action.payload.id ? { ...item, ...action.payload } : item
       );
-    },
-
-    onEdit: (state, action) => {
-      state.isEdit = true;
-      state.current = action.payload;
-    },
-    cancelEdit: state => {
-      state.isEdit = false;
-      state.current = null;
-    },
-    changeFilter: (state, action) => {
-      state.name = action.payload;
     },
   },
   extraReducers: builder => {

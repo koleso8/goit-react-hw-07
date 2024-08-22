@@ -3,7 +3,7 @@ import { ContactList, ChengeForm, SearchBox, ContactForm } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContacts,
-  selectEdit,
+  selectCurrent,
   selectFavorite,
   selectIsFavorite,
 } from './redux/selecrors';
@@ -14,10 +14,10 @@ import { fetchContactsThunk } from './redux/contactsOps';
 const App = () => {
   const dispatch = useDispatch();
 
-  const isEdit = useSelector(selectEdit);
   const isFavorite = useSelector(selectIsFavorite);
   const contacts = useSelector(selectContacts);
   const favorite = useSelector(selectFavorite);
+  const current = useSelector(selectCurrent);
 
   useEffect(() => {
     dispatch(fetchContactsThunk());
@@ -27,7 +27,7 @@ const App = () => {
     <div className="wrapper">
       <h1 className="title">Phonebook</h1>
       <section className="tools">
-        {isEdit ? <ChengeForm /> : <ContactForm />}
+        {current ? <ChengeForm /> : <ContactForm />}
         <div className="util">
           <SearchBox />
           <Toggle />

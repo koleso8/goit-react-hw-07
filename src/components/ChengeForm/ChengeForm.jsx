@@ -4,10 +4,10 @@ import { useId } from 'react';
 import s from '../ContactForm/ContactForm.module.css';
 import { FaPhone, FaUser } from 'react-icons/fa';
 import { contactSchema } from '../../helpers/contactSchema';
-import { cancelEdit } from '../../redux/contactsSlice';
+import { cancelEdit } from '../../redux/editSlice';
+import { chengeContact } from '../../redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrent } from '../../redux/selecrors';
-import { chengeContact } from '../../redux/contactsSlice';
 
 export const ChengeForm = () => {
   const nameFieldId = useId();
@@ -21,10 +21,12 @@ export const ChengeForm = () => {
     action.resetForm();
   };
 
+  const initialValues = useSelector(selectCurrent);
+
   return (
     <Formik
       enableReinitialize
-      initialValues={useSelector(selectCurrent)}
+      initialValues={initialValues}
       validationSchema={contactSchema}
       onSubmit={onSubmit}
     >
