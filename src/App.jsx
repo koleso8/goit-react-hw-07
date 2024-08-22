@@ -1,23 +1,24 @@
-import './App.css';
 import { ContactList, ChengeForm, SearchBox, ContactForm } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContacts,
   selectCurrent,
-  selectFavorite,
-  selectIsFavorite,
+  selectIsError,
+  selectIsLoading,
 } from './redux/selecrors';
-import Toggle from './components/Toggle/Toggle';
+import { errorMessage } from './components/errorMessage';
 import { useEffect } from 'react';
 import { fetchContactsThunk } from './redux/contactsOps';
+import Loader from './components/Loader/Loader';
+import './App.css';
 
 const App = () => {
   const dispatch = useDispatch();
 
-  const isFavorite = useSelector(selectIsFavorite);
   const contacts = useSelector(selectContacts);
-  const favorite = useSelector(selectFavorite);
   const current = useSelector(selectCurrent);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
 
   useEffect(() => {
     dispatch(fetchContactsThunk());
@@ -25,15 +26,16 @@ const App = () => {
 
   return (
     <div className="wrapper">
+      {isLoading && <Loader />}
+      {isError && errorMessage(isError)}
       <h1 className="title">Phonebook</h1>
       <section className="tools">
         {current ? <ChengeForm /> : <ContactForm />}
         <div className="util">
           <SearchBox />
-          <Toggle />
         </div>
       </section>
-      <ContactList contacts={isFavorite ? favorite : contacts} />
+      <ContactList contacts={contacts} />
     </div>
   );
 };

@@ -5,9 +5,9 @@ import s from '../ContactForm/ContactForm.module.css';
 import { FaPhone, FaUser } from 'react-icons/fa';
 import { contactSchema } from '../../helpers/contactSchema';
 import { cancelEdit } from '../../redux/editSlice';
-import { chengeContact } from '../../redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrent } from '../../redux/selecrors';
+import { editContactsThunk } from '../../redux/contactsOps';
 
 export const ChengeForm = () => {
   const nameFieldId = useId();
@@ -16,7 +16,7 @@ export const ChengeForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (value, action) => {
-    dispatch(chengeContact(value));
+    dispatch(editContactsThunk(value));
     dispatch(cancelEdit());
     action.resetForm();
   };

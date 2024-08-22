@@ -2,6 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   addContactsThunk,
   deleteContactsThunk,
+  editContactsThunk,
   fetchContactsThunk,
 } from './contactsOps';
 
@@ -14,13 +15,7 @@ const initialState = {
 const slice = createSlice({
   name: 'contacts',
   initialState,
-  reducers: {
-    chengeContact: (state, action) => {
-      state.items = state.items.map(item =>
-        item.id === action.payload.id ? { ...item, ...action.payload } : item
-      );
-    },
-  },
+
   extraReducers: builder => {
     builder
       .addCase(fetchContactsThunk.fulfilled, (state, action) => {
@@ -32,15 +27,22 @@ const slice = createSlice({
       .addCase(deleteContactsThunk.fulfilled, (state, action) => {
         state.items = state.items.filter(item => item.id !== action.payload);
       })
+      .addCase(editContactsThunk.fulfilled, (state, action) => {
+        state.items = state.items.map(item =>
+          item.id === action.payload.id ? { ...item, ...action.payload } : item
+        );
+      })
 
       .addMatcher(
         isAnyOf(
           fetchContactsThunk.fulfilled,
           addContactsThunk.fulfilled,
           deleteContactsThunk.fulfilled,
+          editContactsThunk.fulfilled,
           fetchContactsThunk.rejected,
           addContactsThunk.rejected,
-          deleteContactsThunk.rejected
+          deleteContactsThunk.rejected,
+          editContactsThunk.rejected
         ),
         state => {
           state.loading = false;
@@ -50,7 +52,8 @@ const slice = createSlice({
         isAnyOf(
           fetchContactsThunk.rejected,
           addContactsThunk.rejected,
-          deleteContactsThunk.rejected
+          deleteContactsThunk.rejected,
+          editContactsThunk.rejected
         ),
         (state, action) => {
           state.error = action.payload;
@@ -58,6 +61,7 @@ const slice = createSlice({
       )
       .addMatcher(
         isAnyOf(
+          editContactsThunk.pending,
           fetchContactsThunk.pending,
           addContactsThunk.pending,
           deleteContactsThunk.pending

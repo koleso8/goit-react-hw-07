@@ -40,14 +40,12 @@ export const deleteContactsThunk = createAsyncThunk(
   }
 );
 
-export const editContactThunk = createAsyncThunk(
+export const editContactsThunk = createAsyncThunk(
   'contacts/editContact',
   async (card, thunkAPI) => {
     try {
-      const { data } = axios.put(`items/${card.id}`, {
-        ...card,
-      });
-      return data.id;
+      await axios.put(`items/${card.id}`, card);
+      return card;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
