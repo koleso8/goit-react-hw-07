@@ -1,6 +1,6 @@
 import './App.css';
 import { ContactList, ChengeForm, SearchBox, ContactForm } from 'components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContacts,
   selectEdit,
@@ -8,12 +8,20 @@ import {
   selectIsFavorite,
 } from './redux/selecrors';
 import Toggle from './components/Toggle/Toggle';
+import { useEffect } from 'react';
+import { fetchContactsThunk } from './redux/contactsOps';
 
 const App = () => {
+  const dispatch = useDispatch();
+
   const isEdit = useSelector(selectEdit);
   const isFavorite = useSelector(selectIsFavorite);
   const contacts = useSelector(selectContacts);
   const favorite = useSelector(selectFavorite);
+
+  useEffect(() => {
+    dispatch(fetchContactsThunk());
+  }, [dispatch]);
 
   return (
     <div className="wrapper">

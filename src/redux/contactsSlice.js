@@ -5,23 +5,35 @@ import {
   fetchContactsThunk,
 } from './contactsOps';
 
-const initialState = { items: [], loading: false, error: null };
+const initialState = {
+  items: [],
+  loading: false,
+  error: null,
+  name: '',
+  isEdit: false,
+  current: null,
+};
 
 const slice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    addContact: (state, action) => {
-      state.items.push(action.payload);
-    },
-    deleteContact: (state, action) => {
-      state.items = state.items.filter(item => item.id !== action.payload);
-    },
-
     chengeContact: (state, action) => {
       state.items = state.items.map(item =>
         item.id === action.payload.id ? { ...item, ...action.payload } : item
       );
+    },
+
+    onEdit: (state, action) => {
+      state.isEdit = true;
+      state.current = action.payload;
+    },
+    cancelEdit: state => {
+      state.isEdit = false;
+      state.current = null;
+    },
+    changeFilter: (state, action) => {
+      state.name = action.payload;
     },
   },
   extraReducers: builder => {
@@ -75,4 +87,11 @@ const slice = createSlice({
 
 export const contactsReducer = slice.reducer;
 
-export const { addContact, deleteContact, chengeContact } = slice.actions;
+export const {
+  addContact,
+  deleteContact,
+  chengeContact,
+  onEdit,
+  cancelEdit,
+  changeFilter,
+} = slice.actions;

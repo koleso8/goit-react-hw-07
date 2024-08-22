@@ -20,6 +20,7 @@ export const addContactsThunk = createAsyncThunk(
   async (card, thunkAPI) => {
     try {
       const { data } = await axios.post('items', card);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -31,8 +32,8 @@ export const deleteContactsThunk = createAsyncThunk(
   'deleteContact',
   async (id, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`items/${id}`);
-      return data;
+      await axios.delete(`items/${id}`);
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -48,6 +49,18 @@ export const editContactThunk = createAsyncThunk(
         card,
       });
       return data.id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addFavotiteThunk = createAsyncThunk(
+  'addFavorite',
+  async (card, thunkAPI) => {
+    try {
+      const { data } = await axios.post('favotite', card);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

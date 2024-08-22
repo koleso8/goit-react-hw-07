@@ -5,10 +5,10 @@ import { FaPencilAlt } from 'react-icons/fa';
 
 import s from './Contact.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from '../../redux/contactsSlice';
-import { onEdit } from '../../redux/editSlice';
+import { onEdit } from '../../redux/contactsSlice';
 import { addFavorite, deleteFavorite } from '../../redux/favoriteSlice';
 import { selectFavorite } from '../../redux/selecrors';
+import { deleteContactsThunk } from '../../redux/contactsOps';
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ const Contact = ({ id, name, number }) => {
         type="button"
         onClick={() => {
           dispatch(deleteFavorite(card));
-          dispatch(deleteContact(id));
+          dispatch(deleteContactsThunk(id));
         }}
       >
         Delete

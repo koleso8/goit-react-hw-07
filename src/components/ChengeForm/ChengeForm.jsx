@@ -4,7 +4,7 @@ import { useId } from 'react';
 import s from '../ContactForm/ContactForm.module.css';
 import { FaPhone, FaUser } from 'react-icons/fa';
 import { contactSchema } from '../../helpers/contactSchema';
-import { cancelEdit } from '../../redux/editSlice';
+import { cancelEdit } from '../../redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrent } from '../../redux/selecrors';
 import { chengeContact } from '../../redux/contactsSlice';

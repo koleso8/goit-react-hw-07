@@ -4,9 +4,8 @@ import { useId } from 'react';
 import { contactSchema } from '../../helpers/contactSchema';
 import s from './ContactForm.module.css';
 import { FaPhone, FaUser } from 'react-icons/fa';
-import { addContact } from '../../redux/contactsSlice';
 import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
+import { addContactsThunk } from '../../redux/contactsOps';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ export const ContactForm = () => {
   const numberFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact({ id: nanoid(), ...values }));
+    dispatch(addContactsThunk(values));
     actions.resetForm();
   };
 
