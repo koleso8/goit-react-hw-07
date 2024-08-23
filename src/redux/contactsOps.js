@@ -51,3 +51,17 @@ export const editContactsThunk = createAsyncThunk(
     }
   }
 );
+
+export const editFavoriteThunk = createAsyncThunk(
+  'contacts/editFavorite',
+  async (card, thunkAPI) => {
+    try {
+      const { data } = await axios.put(`items/${card.id}`, {
+        favorite: !card.favorite,
+      });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

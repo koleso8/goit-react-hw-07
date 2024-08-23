@@ -75,12 +75,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 8px;
   border-radius: 5px;
   border: 2px solid var(--main-color);
   box-shadow: 4px 4px var(--main-color);
   width: 140px;
-  height: 100%;
+  height: 100px;
   position: relative;
 
   @media only screen and (max-width: 375px) {

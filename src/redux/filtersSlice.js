@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { name: '' };
+const initialState = { name: '', isFavorite: false };
 
 const slice = createSlice({
   name: 'filters',
@@ -9,9 +9,12 @@ const slice = createSlice({
     changeFilter: (state, actions) => {
       state.name = actions.payload;
     },
+    changeIsFavorite: state => {
+      state.isFavorite = !state.isFavorite;
+    },
   },
 });
 
 export const filtersReducer = slice.reducer;
 
-export const { changeFilter } = slice.actions;
+export const { changeFilter, changeIsFavorite } = slice.actions;

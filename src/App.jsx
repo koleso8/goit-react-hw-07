@@ -1,7 +1,7 @@
 import { ContactList, ChengeForm, SearchBox, ContactForm } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectContacts,
+  selectContactsFilteredMemo,
   selectCurrent,
   selectIsError,
   selectIsLoading,
@@ -11,11 +11,12 @@ import { useEffect } from 'react';
 import { fetchContactsThunk } from './redux/contactsOps';
 import Loader from './components/Loader/Loader';
 import './App.css';
+import Toggle from './Toggle/Toggle';
 
 const App = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectContactsFilteredMemo);
   const current = useSelector(selectCurrent);
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
@@ -33,6 +34,7 @@ const App = () => {
         {current ? <ChengeForm /> : <ContactForm />}
         <div className="util">
           <SearchBox />
+          <Toggle />
         </div>
       </section>
       <ContactList contacts={contacts} />
