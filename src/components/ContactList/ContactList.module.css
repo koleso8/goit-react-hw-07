@@ -4,6 +4,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  @media only screen and (max-width: 376px) {
+    gap: 10px;
+  }
 }
 
 .card {
@@ -21,6 +24,11 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  @media only screen and (max-width: 376px) {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+  }
 }
 .card:nth-child(even) {
   background: #ebfa93;
