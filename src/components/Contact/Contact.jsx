@@ -23,7 +23,9 @@ const Contact = ({ id, name, number, favorite }) => {
           dispatch(onEdit(card));
         }}
       >
-        <FaPencilAlt />
+        <a href="#chengeForm">
+          <FaPencilAlt />
+        </a>
       </button>
 
       {card.favorite ? (

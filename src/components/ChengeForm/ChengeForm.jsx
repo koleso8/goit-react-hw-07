@@ -30,7 +30,7 @@ export const ChengeForm = () => {
       validationSchema={contactSchema}
       onSubmit={onSubmit}
     >
-      <Form className={clsx(s.form, s.change)}>
+      <Form className={clsx(s.form, s.change)} id="chengeForm">
         <label htmlFor={nameFieldId}>
           Name <FaUser className={clsx(s.icon)} />
         </label>

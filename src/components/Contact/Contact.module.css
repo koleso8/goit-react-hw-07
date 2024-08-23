@@ -103,7 +103,7 @@
 
 .favorite {
   composes: edit;
-  top: 40px;
+  top: 44px;
   @media only screen and (max-width: 406px) {
     top: 72px;
     padding: 3px;
